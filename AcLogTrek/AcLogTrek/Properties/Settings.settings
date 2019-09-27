@@ -1,0 +1,48 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SharepntTestHost.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LogFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Set in log4net.config</Value>
+    </Setting>
+    <Setting Name="AccessMdbPath1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\FW\Dominium\Data\SICCodes.csv</Value>
+    </Setting>
+    <Setting Name="AccessMdbPath2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\FW\Printpack\COI\Db\Access\Mdb\COI_Admin_DB.mdb</Value>
+    </Setting>
+    <Setting Name="AccessMdbPath3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Work\PPK\Data\COI_Admin_DB.mdb</Value>
+    </Setting>
+    <Setting Name="SqlServerName1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MERCURY\SQLEXPRESS</Value>
+    </Setting>
+    <Setting Name="SqlServerName2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MERCURY\MERCURY</Value>
+    </Setting>
+    <Setting Name="SqlServerName3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ppksql3dv</Value>
+    </Setting>
+    <Setting Name="SqlDbName1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ClientRevenue</Value>
+    </Setting>
+    <Setting Name="SqlDbName2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COI_Sharepoint</Value>
+    </Setting>
+    <Setting Name="SqlDbName3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COI_Test</Value>
+    </Setting>
+    <Setting Name="AccessMdbUserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">pp_nt\fpeters</Value>
+    </Setting>
+    <Setting Name="AccessMdbUserPW" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Password1</Value>
+    </Setting>
+    <Setting Name="WindowsUserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">pp_nt\fpeters</Value>
+    </Setting>
+    <Setting Name="WindowsUserPW" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Password1</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

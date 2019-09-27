@@ -1,0 +1,9 @@
+*.suo
+.sass-cache
+packages/*.*
+bin/*.*
+obj/*.*
+.nuget/NuGet.Config
+.nuget/NuGet.exe
+.nuget/NuGet.targets
+.*/
