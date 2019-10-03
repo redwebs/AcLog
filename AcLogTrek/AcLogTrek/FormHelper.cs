@@ -187,6 +187,21 @@ namespace AclTrek
 		}
 
 
-		#endregion File IO
-	}
+        #endregion File IO
+
+        #region System
+
+        public static string GetEnvironmentVar(string name)
+        {
+            return System.Environment.GetEnvironmentVariable(name);
+        }
+
+        public static void SetEnvironmentVar(string name, string value)
+        {
+            Environment.SetEnvironmentVariable(name, value, EnvironmentVariableTarget.Machine);
+        }
+
+        #endregion System
+
+    }
 }

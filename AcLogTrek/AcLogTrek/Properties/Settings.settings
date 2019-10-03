@@ -9,40 +9,43 @@
       <Value Profile="(Default)">C:\Users\fred\Dropbox\HamLog\LogData.mdb</Value>
     </Setting>
     <Setting Name="AccessMdbPath2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\FW\Printpack\COI\Db\Access\Mdb\COI_Admin_DB.mdb</Value>
+      <Value Profile="(Default)">---</Value>
     </Setting>
     <Setting Name="AccessMdbPath3" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Work\PPK\Data\COI_Admin_DB.mdb</Value>
+      <Value Profile="(Default)">---</Value>
     </Setting>
     <Setting Name="SqlServerName1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">fredwebs.database.windows.net</Value>
+      <Value Profile="(Default)">SsName1EnvVariable</Value>
     </Setting>
     <Setting Name="SqlServerName2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">MERCURY\MERCURY</Value>
+      <Value Profile="(Default)">SsName2EnvVariable</Value>
     </Setting>
     <Setting Name="SqlServerName3" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ppksql3dv</Value>
+      <Value Profile="(Default)">SsName3EnvVariable</Value>
     </Setting>
     <Setting Name="SqlDbName1" Type="System.String" Scope="User">
       <Value Profile="(Default)">AmateurContactLog</Value>
     </Setting>
     <Setting Name="SqlDbName2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">COI_Sharepoint</Value>
+      <Value Profile="(Default)">AmateurContactLog</Value>
     </Setting>
     <Setting Name="SqlDbName3" Type="System.String" Scope="User">
-      <Value Profile="(Default)">COI_Test</Value>
+      <Value Profile="(Default)">AmateurContactLog</Value>
     </Setting>
     <Setting Name="AccessMdbUserName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">pp_nt\fpeters</Value>
+      <Value Profile="(Default)">---</Value>
     </Setting>
     <Setting Name="AccessMdbUserPW" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Password1</Value>
+      <Value Profile="(Default)">---</Value>
     </Setting>
     <Setting Name="WindowsUserName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">pp_nt\fpeters</Value>
+      <Value Profile="(Default)">winuser</Value>
     </Setting>
     <Setting Name="WindowsUserPW" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Password1</Value>
+      <Value Profile="(Default)">winpwd</Value>
+    </Setting>
+    <Setting Name="SqlDbUserName1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SqlDbUserName</Value>
     </Setting>
   </Settings>
 </SettingsFile>

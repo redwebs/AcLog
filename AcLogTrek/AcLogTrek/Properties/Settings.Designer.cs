@@ -49,7 +49,7 @@ namespace AclTrek.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\FW\\Printpack\\COI\\Db\\Access\\Mdb\\COI_Admin_DB.mdb")]
+        [global::System.Configuration.DefaultSettingValueAttribute("---")]
         public string AccessMdbPath2 {
             get {
                 return ((string)(this["AccessMdbPath2"]));
@@ -61,7 +61,7 @@ namespace AclTrek.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Work\\PPK\\Data\\COI_Admin_DB.mdb")]
+        [global::System.Configuration.DefaultSettingValueAttribute("---")]
         public string AccessMdbPath3 {
             get {
                 return ((string)(this["AccessMdbPath3"]));
@@ -73,7 +73,7 @@ namespace AclTrek.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("fredwebs.database.windows.net")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SsName1EnvVariable")]
         public string SqlServerName1 {
             get {
                 return ((string)(this["SqlServerName1"]));
@@ -85,7 +85,7 @@ namespace AclTrek.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MERCURY\\MERCURY")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SsName2EnvVariable")]
         public string SqlServerName2 {
             get {
                 return ((string)(this["SqlServerName2"]));
@@ -97,7 +97,7 @@ namespace AclTrek.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ppksql3dv")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SsName3EnvVariable")]
         public string SqlServerName3 {
             get {
                 return ((string)(this["SqlServerName3"]));
@@ -121,7 +121,7 @@ namespace AclTrek.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("COI_Sharepoint")]
+        [global::System.Configuration.DefaultSettingValueAttribute("AmateurContactLog")]
         public string SqlDbName2 {
             get {
                 return ((string)(this["SqlDbName2"]));
@@ -133,7 +133,7 @@ namespace AclTrek.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("COI_Test")]
+        [global::System.Configuration.DefaultSettingValueAttribute("AmateurContactLog")]
         public string SqlDbName3 {
             get {
                 return ((string)(this["SqlDbName3"]));
@@ -145,7 +145,7 @@ namespace AclTrek.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("pp_nt\\fpeters")]
+        [global::System.Configuration.DefaultSettingValueAttribute("---")]
         public string AccessMdbUserName {
             get {
                 return ((string)(this["AccessMdbUserName"]));
@@ -157,7 +157,7 @@ namespace AclTrek.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Password1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("---")]
         public string AccessMdbUserPW {
             get {
                 return ((string)(this["AccessMdbUserPW"]));
@@ -169,7 +169,7 @@ namespace AclTrek.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("pp_nt\\fpeters")]
+        [global::System.Configuration.DefaultSettingValueAttribute("winuser")]
         public string WindowsUserName {
             get {
                 return ((string)(this["WindowsUserName"]));
@@ -181,13 +181,25 @@ namespace AclTrek.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Password1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("winpwd")]
         public string WindowsUserPW {
             get {
                 return ((string)(this["WindowsUserPW"]));
             }
             set {
                 this["WindowsUserPW"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SqlDbUserName")]
+        public string SqlDbUserName1 {
+            get {
+                return ((string)(this["SqlDbUserName1"]));
+            }
+            set {
+                this["SqlDbUserName1"] = value;
             }
         }
     }
