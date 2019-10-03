@@ -1,31 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
-using System.Data.Common;
-using System.Data.ProviderBase;
-using System.Data.SqlClient;
-using System.Data.SqlTypes;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Runtime.Remoting;
-using System.Runtime.Remoting.Channels;
-using System.Runtime.Serialization;
-using System.Text.RegularExpressions;
 using System.Text;
-using System.Web;
 using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Serialization;
-using System.Xml.XPath;
-using log4net;
 using AcLogServices;
 
 namespace AclTrek
@@ -50,12 +26,13 @@ namespace AclTrek
 
 		const string _AppLogName = "AcLogServices";
 		const string _StdDateDispFmt = "yy-MM-dd hh:mm tt";
+        const string _AccessFilePath1 = @"C:\Users\fred\Dropbox\HamLog\LogData.mdb";
 
-		#endregion
+        #endregion
 
-		#region Properties
+        #region Properties
 
-		public AcLogService AcLogSvcs
+        public AcLogService AcLogSvcs
 		{
 			get 
 			{
@@ -108,8 +85,7 @@ namespace AclTrek
 			cbo.SelectedIndex = 0;
 		}
 
-
-		private void LoadDefaultData()
+        private void LoadDefaultData()
 		{
 			_LoadingDefaultData = true;
 
@@ -708,6 +684,11 @@ namespace AclTrek
 			UpdateAllSqlTable(cboSqlServer.Text, cboSqlDb.Text, cboAccessFilePath.Text, cboAccessTable);
 		}
 
+		private void btnBrowse_Click(object sender, EventArgs e)
+		{
+
+		}
+
 		#endregion Buttons
 
 		#region Text and CBO
@@ -774,12 +755,6 @@ namespace AclTrek
 		}
 
 		#endregion Log/Output Buttons
-
-		private void btnBrowse_Click(object sender, EventArgs e)
-		{
-
-		}
-
 
 		#region Other Ctrls
 

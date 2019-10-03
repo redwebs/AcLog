@@ -1,20 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Data;
-using System.Data.Common;
-using System.Data.ProviderBase;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Data.OleDb;
-using System.Linq;
 using System.Text;
-using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Serialization;
-using System.Xml.XPath;
 using System.IO;
-using System.Net;
 
 namespace AcLogServices
 {

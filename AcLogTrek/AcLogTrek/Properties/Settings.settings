@@ -1,12 +1,12 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SharepntTestHost.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AclTrek.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="LogFilePath" Type="System.String" Scope="User">
       <Value Profile="(Default)">Set in log4net.config</Value>
     </Setting>
     <Setting Name="AccessMdbPath1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\FW\Dominium\Data\SICCodes.csv</Value>
+      <Value Profile="(Default)">C:\Users\fred\Dropbox\HamLog\LogData.mdb</Value>
     </Setting>
     <Setting Name="AccessMdbPath2" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\FW\Printpack\COI\Db\Access\Mdb\COI_Admin_DB.mdb</Value>
@@ -15,7 +15,7 @@
       <Value Profile="(Default)">C:\Work\PPK\Data\COI_Admin_DB.mdb</Value>
     </Setting>
     <Setting Name="SqlServerName1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">MERCURY\SQLEXPRESS</Value>
+      <Value Profile="(Default)">fredwebs.database.windows.net</Value>
     </Setting>
     <Setting Name="SqlServerName2" Type="System.String" Scope="User">
       <Value Profile="(Default)">MERCURY\MERCURY</Value>
@@ -24,7 +24,7 @@
       <Value Profile="(Default)">ppksql3dv</Value>
     </Setting>
     <Setting Name="SqlDbName1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ClientRevenue</Value>
+      <Value Profile="(Default)">AmateurContactLog</Value>
     </Setting>
     <Setting Name="SqlDbName2" Type="System.String" Scope="User">
       <Value Profile="(Default)">COI_Sharepoint</Value>

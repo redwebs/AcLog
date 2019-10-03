@@ -1,10 +1,9 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.136
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29209.62
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{97B6AFCB-6853-4EEB-BE7A-72378151D9A3}") = "AcLogTrek", "AcLogTrek\AcLogTrek.csproj", "{AE1DED29-29ED-49CE-A095-777D11CBA748}"
-EndProject
-Project("{97B6AFCB-6853-4EEB-BE7A-72378151D9A3}") = "AcLogServices", "AcLogService\AcLogServices.csproj", "{211A4E4C-D2F2-4E5D-9CE0-142E9AC29A14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcLogTrek", "AcLogTrek\AcLogTrek.csproj", "{AE1DED29-29ED-49CE-A095-777D11CBA748}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,12 +15,11 @@ Global
 		{AE1DED29-29ED-49CE-A095-777D11CBA748}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE1DED29-29ED-49CE-A095-777D11CBA748}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE1DED29-29ED-49CE-A095-777D11CBA748}.Release|Any CPU.Build.0 = Release|Any CPU
-		{211A4E4C-D2F2-4E5D-9CE0-142E9AC29A14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{211A4E4C-D2F2-4E5D-9CE0-142E9AC29A14}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{211A4E4C-D2F2-4E5D-9CE0-142E9AC29A14}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{211A4E4C-D2F2-4E5D-9CE0-142E9AC29A14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14CCAED4-7A7C-4B72-B895-B07387F425AC}
 	EndGlobalSection
 EndGlobal

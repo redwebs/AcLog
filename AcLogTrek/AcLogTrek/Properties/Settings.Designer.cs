@@ -12,7 +12,7 @@ namespace AclTrek.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.1.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.2.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -37,7 +37,7 @@ namespace AclTrek.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\FW\\Dominium\\Data\\SICCodes.csv")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\fred\\Dropbox\\HamLog\\LogData.mdb")]
         public string AccessMdbPath1 {
             get {
                 return ((string)(this["AccessMdbPath1"]));
@@ -73,7 +73,7 @@ namespace AclTrek.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MERCURY\\SQLEXPRESS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("fredwebs.database.windows.net")]
         public string SqlServerName1 {
             get {
                 return ((string)(this["SqlServerName1"]));
@@ -109,7 +109,7 @@ namespace AclTrek.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ClientRevenue")]
+        [global::System.Configuration.DefaultSettingValueAttribute("AmateurContactLog")]
         public string SqlDbName1 {
             get {
                 return ((string)(this["SqlDbName1"]));

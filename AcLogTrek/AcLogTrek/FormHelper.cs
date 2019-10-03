@@ -1,29 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Data.Common;
-using System.Data.ProviderBase;
-using System.Data.SqlClient;
-using System.Data.SqlTypes;
-using System.Diagnostics;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Runtime.Remoting;
-using System.Runtime.Remoting.Channels;
-using System.Runtime.Serialization;
-using System.Text.RegularExpressions;
 using System.Text;
-using System.Web;
 using System.Windows.Forms;
 using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Serialization;
-using System.Xml.XPath;
 
 namespace AclTrek
 {
