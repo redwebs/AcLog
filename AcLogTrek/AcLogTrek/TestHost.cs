@@ -14,8 +14,6 @@ namespace AclTrek
         public Log4Form _Log = null;
 
         private DataSet _DisplayDataSet = null;
-        private string _CurrentPathwaysCaseID = string.Empty;
-        private string _TriageResponseXNS = string.Empty;
         private AcLogService _AcLogService;
         private bool _ExternalSvcConnected = false;
         private bool _LoadingDefaultData = false;
@@ -28,6 +26,7 @@ namespace AclTrek
 
         const string _AppLogName = "AcLogServices";
         const string _StdDateDispFmt = "yy-MM-dd hh:mm tt";
+        const string _AcLogSettingsEnvVar = "AcLogSettingsPath";
         const string _AccessFilePath1 = @"C:\Users\fred\Dropbox\HamLog\LogData.mdb";
 
         #endregion
@@ -52,7 +51,7 @@ namespace AclTrek
 
         #endregion 
 
-        #region Sharepoint 1
+        #region Form loading and events
 
         private AcLogService CreateAcLogServices()
         {
@@ -91,7 +90,11 @@ namespace AclTrek
         {
             _LoadingDefaultData = true;
 
-            _Settings = FormHelper.ReadSettingsJson(@"C:\Users\fred\Dropbox\HamLog\AcLogSettings.json");
+            // FormHelper.SetEnvironmentVar(_AcLogSettingsEnvVar, @"C:\Users\fred\Dropbox\HamLog\AcLogSettings.json");
+            var settingsPath = FormHelper.GetEnvironmentVar(_AcLogSettingsEnvVar);
+
+            _Settings = FormHelper.ReadSettingsJson(settingsPath);
+//            _Settings = FormHelper.ReadSettingsJson(@"C:\Users\fred\Dropbox\HamLog\Test.json");
 
             Properties.Settings appSettings = Properties.Settings.Default;
 

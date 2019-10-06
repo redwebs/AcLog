@@ -9,18 +9,18 @@ namespace AclTrek
 {
     public class AcLogSettings
     {
-        public AppGeneral ApplicationSettings { get; set; }
-        public Accessmdb[] AccessMdbArray { get; set; }
-        public Sqlserver[] SqlServerArray { get; set; }
-        public Windowsuser WindowsUserSettings { get; set; }
+        public AppGeneralSettings AppGeneral { get; set; }
+        public IList<Accessmdb> AccessMdbs { get; set; }
+        public IList<Sqlserver> SqlServers { get; set; }
+        public WindowsUserSettings WindowsUser { get; set; }
     }
 
-    public class AppGeneral
+    public class AppGeneralSettings
     {
         public string LogFilePath { get; set; }
     }
 
-    public class Windowsuser
+    public class WindowsUserSettings
     {
         public string WinUser { get; set; }
         public string WinPassWord { get; set; }
@@ -31,7 +31,7 @@ namespace AclTrek
         public string FilePath { get; set; }
         public string UserName { get; set; }
         public string PassWord { get; set; }
-        public string[] Table { get; set; }
+        public List<string> Tables { get; set; }
     }
 
     public class Sqlserver
@@ -41,7 +41,7 @@ namespace AclTrek
         public string Security { get; set; }
         public string UserName { get; set; }
         public string PassWord { get; set; }
-        public string[] Table { get; set; }
+        public List<string> Tables { get; set; }
     }
 
 }

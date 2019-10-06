@@ -4,11 +4,14 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace AclTrek
 {
     public static class FormHelper
     {
+        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
 
         #region XML
 
@@ -191,14 +194,23 @@ namespace AclTrek
         {
             try
             {
-                var json = System.IO.File.ReadAllText(acLogSettingsFilePath);
-                return JsonConvert.DeserializeObject<AcLogSettings>(json);
+                var contractResolver = new DefaultContractResolver
+                {
+                    NamingStrategy = new CamelCaseNamingStrategy()
+                };
 
+                using (var file = File.OpenText(acLogSettingsFilePath))
+                {
+                    var serializer = new JsonSerializer();
+                    serializer.ContractResolver = contractResolver;
+                    var settings = (AcLogSettings)serializer.Deserialize(file, typeof(AcLogSettings));
+                    Log.Info($"ReadSettingsJson: Read json file at location {acLogSettingsFilePath}");
+                    return settings;
+                }
             }
             catch (Exception ex)
             {
-                
-                //_Log.Error($"ReadOfficeJson: Cannot read json file at location {acLogSettingsFilePath}, ex: {ex}");
+                Log.Error($"ReadSettingsJson: Cannot read json file at location {acLogSettingsFilePath}, ex: {ex}");
                 return null;
             }
         }
