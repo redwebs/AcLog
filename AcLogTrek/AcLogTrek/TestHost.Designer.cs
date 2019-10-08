@@ -79,11 +79,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnUpdateAllTables = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.txtWinUsrPwd = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtWinUname = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.tcOutput.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -94,7 +89,6 @@
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -618,61 +612,11 @@
             this.btnUpdateAllTables.UseVisualStyleBackColor = true;
             this.btnUpdateAllTables.Click += new System.EventHandler(this.btnUpdateAllTables_Click);
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.txtWinUsrPwd);
-            this.groupBox5.Controls.Add(this.label7);
-            this.groupBox5.Controls.Add(this.txtWinUname);
-            this.groupBox5.Controls.Add(this.label6);
-            this.groupBox5.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.groupBox5.Location = new System.Drawing.Point(576, 12);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(175, 104);
-            this.groupBox5.TabIndex = 84;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Windows Account";
-            // 
-            // txtWinUsrPwd
-            // 
-            this.txtWinUsrPwd.Location = new System.Drawing.Point(47, 52);
-            this.txtWinUsrPwd.Name = "txtWinUsrPwd";
-            this.txtWinUsrPwd.Size = new System.Drawing.Size(122, 20);
-            this.txtWinUsrPwd.TabIndex = 89;
-            this.txtWinUsrPwd.Text = "Password3";
-            this.txtWinUsrPwd.UseSystemPasswordChar = true;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(5, 54);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(37, 13);
-            this.label7.TabIndex = 88;
-            this.label7.Text = "Pword";
-            // 
-            // txtWinUname
-            // 
-            this.txtWinUname.Location = new System.Drawing.Point(47, 22);
-            this.txtWinUname.Name = "txtWinUname";
-            this.txtWinUname.Size = new System.Drawing.Size(122, 20);
-            this.txtWinUname.TabIndex = 88;
-            this.txtWinUname.Text = "slamdata";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 24);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 13);
-            this.label6.TabIndex = 89;
-            this.label6.Text = "Uname";
-            // 
             // TestHost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(877, 476);
-            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
@@ -694,8 +638,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
 		}
@@ -748,11 +690,6 @@
 		private System.Windows.Forms.TextBox txtAccessUname;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.GroupBox groupBox5;
-		private System.Windows.Forms.TextBox txtWinUsrPwd;
-		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.TextBox txtWinUname;
-		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.RadioButton rbWinSecurity;
 		private System.Windows.Forms.Button btnBrowse;
 	}

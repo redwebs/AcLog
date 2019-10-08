@@ -2,7 +2,6 @@
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using AcLogServices;
 
 namespace AclTrek
 {
@@ -11,35 +10,29 @@ namespace AclTrek
     {
         #region Member Variables
 
-        public Log4Form _Log = null;
+        public Log4Form Log = null;
 
-        private DataSet _DisplayDataSet = null;
-        private AcLogService _AcLogService;
-        private bool _ExternalSvcConnected = false;
-        private bool _LoadingDefaultData = false;
+        private readonly DataSet _displayDataSet = null;
+        private AcLogService _acLogService;
+        private bool _externalSvcConnected = false;
+        private bool _loadingDefaultData = false;
 
-        public AcLogSettings _Settings;
+        public AcLogSettings AclSettings;
 
         #endregion Member Vars
 
         #region Member Constants
 
-        const string _AppLogName = "AcLogServices";
-        const string _StdDateDispFmt = "yy-MM-dd hh:mm tt";
-        const string _AcLogSettingsEnvVar = "AcLogSettingsPath";
-        const string _AccessFilePath1 = @"C:\Users\fred\Dropbox\HamLog\LogData.mdb";
+        private const string AppLogName = "AcLogServices";
+        private const string StdDateDispFmt = "yy-MM-dd hh:mm tt";
+        private const string AcLogSettingsEnvVar = "AcLogSettingsPath";
 
         #endregion
 
         #region Properties
 
-        public AcLogService AcLogSvcs
-        {
-            get 
-            {
-                return _AcLogService ?? CreateAcLogServices();
-            }
-        }
+        public AcLogService AcLogSvcs => _acLogService ?? CreateAcLogServices();
+
         #endregion Properties
 
         #region Constructors
@@ -55,19 +48,17 @@ namespace AclTrek
 
         private AcLogService CreateAcLogServices()
         {
-            if (!_LoadingDefaultData)
+            if (!_loadingDefaultData)
             {
-                _AcLogService = new AcLogService(
+                _acLogService = new AcLogService(
                     cboAccessFilePath.Text,
                     txtSqlUname.Text,
                     txtSqlUsrPword.Text,
                     txtAccessUname.Text,
                     txtAccessUsrPword.Text,
-                    txtWinUname.Text,
-                    txtWinUsrPwd.Text,
                     rbWinSecurity.Checked);
             }
-            return _AcLogService;
+            return _acLogService;
         }
 
         private void ClearCboAndLoad(ComboBox cbo, string text)
@@ -88,13 +79,12 @@ namespace AclTrek
 
         private void LoadDefaultData()
         {
-            _LoadingDefaultData = true;
+            _loadingDefaultData = true;
 
-            // FormHelper.SetEnvironmentVar(_AcLogSettingsEnvVar, @"C:\Users\fred\Dropbox\HamLog\AcLogSettings.json");
-            var settingsPath = FormHelper.GetEnvironmentVar(_AcLogSettingsEnvVar);
+            // If Env Var is not found, default to file in executing folder
+            var settingsPath = FormHelper.GetEnvironmentVar(AcLogSettingsEnvVar) ?? $"{FormHelper.GetExecutingDirectory()}\\AcLogSettings.json";
 
-            _Settings = FormHelper.ReadSettingsJson(settingsPath);
-//            _Settings = FormHelper.ReadSettingsJson(@"C:\Users\fred\Dropbox\HamLog\Test.json");
+            AclSettings = FormHelper.ReadSettingsJson(settingsPath);
 
             Properties.Settings appSettings = Properties.Settings.Default;
 
@@ -106,12 +96,6 @@ namespace AclTrek
             cboAccessFilePath.Items.Add(accessPath);
             cboAccessFilePath.SelectedIndex = 0;
 
-            /*  Insurance Compliance|InsuranceCompliance,
-                COI Letterhead Adresses: All Items|COI_LHeadAddr,
-                COI Signatories|COI_Signatories,
-                Contractors|Contractor,
-                tblUserTable|COI_User,
-                Certificates of Insurance: COI_Data_View|CertificateOfInsurance  */
 
             var accessTable = new CtrlListItem("Insurance Compliance", "InsuranceCompliance");
             cboAccessTable.Items.Add(accessTable);
@@ -160,7 +144,7 @@ namespace AclTrek
             cboTableSqlSvr.Items.Add(sqlTable);
 
             cboTableSqlSvr.SelectedIndex = 0;
-            _LoadingDefaultData = false;
+            _loadingDefaultData = false;
         }
         
         #endregion Sharepoint 1
@@ -188,27 +172,27 @@ namespace AclTrek
 
         private void DisplayDataSet(string dataSetName)
         {
-            if (_DisplayDataSet == null)
+            if (_displayDataSet == null)
             {
-                _Log.Warn("The Dataset " + dataSetName + " is null.");
+                Log.Warn("The Dataset " + dataSetName + " is null.");
                 return;
             }
 
-            if (_DisplayDataSet.Tables.Count.Equals(0))
+            if (_displayDataSet.Tables.Count.Equals(0))
             {
-                _Log.Warn("The Dataset " + dataSetName + " has no tables.");
+                Log.Warn("The Dataset " + dataSetName + " has no tables.");
                 return;
             }
 
             try
             {
                 nUpDnTable.Value = 1;
-                dgProgramData.DataSource = _DisplayDataSet.Tables[0];
-                lblTableName.Text = _DisplayDataSet.Tables[0].TableName;
+                dgProgramData.DataSource = _displayDataSet.Tables[0];
+                lblTableName.Text = _displayDataSet.Tables[0].TableName;
             }
             catch (Exception ex)
             {
-                _Log.Info("Error binding the " + dataSetName + " DataSet to the datagrid: /r/n" + ex.Message);
+                Log.Info("Error binding the " + dataSetName + " DataSet to the datagrid: /r/n" + ex.Message);
             }
         }
 
@@ -220,7 +204,7 @@ namespace AclTrek
 
         private void LogException(Exception ex, string prefix)
         {
-            _Log.Error(prefix + ": Exception\r\n\t" + ex.Message);
+            Log.Error(prefix + ": Exception\r\n\t" + ex.Message);
             LogInnerExceptions(ex);
         }
 
@@ -234,13 +218,13 @@ namespace AclTrek
             }
             if (exInner != ex)
             {
-                _Log.Error("Inner Exception: " + exInner.Message);
+                Log.Error("Inner Exception: " + exInner.Message);
             }
         }
 
         private void LogException(Exception ex)
         {
-            _Log.Error("Exception: " + ex.Message);
+            Log.Error("Exception: " + ex.Message);
             LogInnerExceptions(ex);
         }
 
@@ -259,18 +243,18 @@ namespace AclTrek
                 sb.Append(sqlDb);
                 sb.Append(" TableName: ");
                 sb.AppendLine(tableName);
-                _Log.Info(sb.ToString());
+                Log.Info(sb.ToString());
                 this.Cursor = Cursors.WaitCursor;
                 Application.DoEvents();
                 sb.Clear();
 
-                DataTable tbl = _AcLogService.GetSqlTable(sqlServer, sqlDb, tableName);
+                DataTable tbl = _acLogService.GetSqlTable(sqlServer, sqlDb, tableName);
                 dgProgramData.DataSource = tbl;
-                _Log.Info("GetSqlTable: Read " + tbl.Rows.Count.ToString() + " Rows.");
+                Log.Info("GetSqlTable: Read " + tbl.Rows.Count.ToString() + " Rows.");
             }
             catch (Exception ex)
             {
-                _Log.Error("GetSqlTable: " + ex.Message);
+                Log.Error("GetSqlTable: " + ex.Message);
             }
             finally
             {
@@ -290,12 +274,12 @@ namespace AclTrek
                 sb.Append(sqlDb);
                 sb.Append(" TableName: ");
                 sb.AppendLine(tableName);
-                _Log.Info(sb.ToString());
+                Log.Info(sb.ToString());
                 this.Cursor = Cursors.WaitCursor;
                 Application.DoEvents();
                 sb.Clear();
 
-                var colList = _AcLogService.GetSqlTableFields(sqlServer, sqlDb, tableName);
+                var colList = _acLogService.GetSqlTableFields(sqlServer, sqlDb, tableName);
                 sb.AppendLine($"GetAccessTableFields: Read {colList.Count} Columns.");
                 int colCntr = 0;
 
@@ -308,11 +292,11 @@ namespace AclTrek
                     sb.AppendLine(column.DataType.Name);
                     colCntr++;
                 }
-                _Log.Info(sb.ToString());
+                Log.Info(sb.ToString());
             }
             catch (Exception ex)
             {
-                _Log.Error("GetSqlTable: " + ex.Message);
+                Log.Error("GetSqlTable: " + ex.Message);
             }
             finally
             {
@@ -334,18 +318,18 @@ namespace AclTrek
                 sb.Append(sqlDb);
                 sb.Append(" TableName: ");
                 sb.AppendLine(tableName);
-                _Log.Info(sb.ToString());
+                Log.Info(sb.ToString());
                 this.Cursor = Cursors.WaitCursor;
                 Application.DoEvents();
                 sb.Clear();
 
-                var lastMod = _AcLogService.GetSqlTableLastModified(sqlServer, sqlDb, tableName);
-                sb.AppendLine("GetSqlTableLastMod: Date " + lastMod.ToString(_StdDateDispFmt));
-                _Log.Info(sb.ToString());
+                var lastMod = _acLogService.GetSqlTableLastModified(sqlServer, sqlDb, tableName);
+                sb.AppendLine("GetSqlTableLastMod: Date " + lastMod.ToString(StdDateDispFmt));
+                Log.Info(sb.ToString());
             }
             catch (Exception ex)
             {
-                _Log.Error("GetSqlTableLastMod: " + ex.Message);
+                Log.Error("GetSqlTableLastMod: " + ex.Message);
             }
             finally
             {
@@ -368,18 +352,18 @@ namespace AclTrek
                 sb.AppendLine(tableName);
                 sb.Append("FilePath: ");
                 sb.AppendLine(filePath);
-                _Log.Info(sb.ToString());
+                Log.Info(sb.ToString());
                 this.Cursor = Cursors.WaitCursor;
                 Application.DoEvents();
                 sb.Clear();
 
-                var rowCnt = _AcLogService.CopyCSVToSqlTable(sqlServer, sqlDb, tableName, filePath);
+                var rowCnt = _acLogService.CopyCsvToSqlTable(sqlServer, sqlDb, tableName, filePath);
                 sb.AppendLine("FillTableFromCSV: Rows copied " + rowCnt.ToString());
-                _Log.Info(sb.ToString());
+                Log.Info(sb.ToString());
             }
             catch (Exception ex)
             {
-                _Log.Error("FillTableFromCSV: " + ex.Message);
+                Log.Error("FillTableFromCSV: " + ex.Message);
             }
             finally
             {
@@ -399,18 +383,18 @@ namespace AclTrek
                 sb.Append(sqlDb);
                 sb.Append(" TableName: ");
                 sb.AppendLine(tableName);
-                _Log.Info(sb.ToString());
+                Log.Info(sb.ToString());
                 this.Cursor = Cursors.WaitCursor;
                 Application.DoEvents();
                 sb.Clear();
 
-                var lastMod = _AcLogService.ClearSqlTable(sqlServer, sqlDb, tableName);
+                var lastMod = _acLogService.ClearSqlTable(sqlServer, sqlDb, tableName);
                 sb.AppendLine("ClearSqlTable: rows " + lastMod.ToString());
-                _Log.Info(sb.ToString());
+                Log.Info(sb.ToString());
             }
             catch (Exception ex)
             {
-                _Log.Error("ClearSqlTable: " + ex.Message);
+                Log.Error("ClearSqlTable: " + ex.Message);
             }
             finally
             {
@@ -435,18 +419,18 @@ namespace AclTrek
                 sb.AppendLine(accessFilePath);
                 sb.Append(" TableName: ");
                 sb.AppendLine(tableNameAccess);
-                _Log.Info(sb.ToString());
+                Log.Info(sb.ToString());
                 this.Cursor = Cursors.WaitCursor;
                 Application.DoEvents();
                 sb.Clear();
 
-                var rowsCopied = _AcLogService.UpdateSqlTable(sqlServer, sqlDb, tableNameSql, accessFilePath, tableNameAccess);
+                var rowsCopied = _acLogService.UpdateSqlTable(sqlServer, sqlDb, tableNameSql, accessFilePath, tableNameAccess);
                 sb.AppendLine("UpdateSqlTable: rows " + rowsCopied.ToString());
-                _Log.Info(sb.ToString());
+                Log.Info(sb.ToString());
             }
             catch (Exception ex)
             {
-                _Log.Error("ClearSqlTable: " + ex.Message);
+                Log.Error("ClearSqlTable: " + ex.Message);
             }
             finally
             {
@@ -466,7 +450,7 @@ namespace AclTrek
                 sb.Append(sqlDb);
                 sb.Append(" FilePath: ");
                 sb.AppendLine(accessFilePath);
-                _Log.Info(sb.ToString());
+                Log.Info(sb.ToString());
                 this.Cursor = Cursors.WaitCursor;
                 Application.DoEvents();
 
@@ -480,30 +464,30 @@ namespace AclTrek
                     sb.Append(ctrlItem.ToString());
                     sb.Append(" -- SQL Table: ");
                     sb.Append(ctrlItem.ItemDataString);
-                    _Log.Info(sb.ToString());
+                    Log.Info(sb.ToString());
                     Application.DoEvents();
 
-                    var rowsDel = _AcLogService.ClearSqlTable(sqlServer, sqlDb, ctrlItem.ItemDataString);
+                    var rowsDel = _acLogService.ClearSqlTable(sqlServer, sqlDb, ctrlItem.ItemDataString);
                     sb.Clear();
                     sb.Append("ClearSqlTable: Rows ");
                     sb.Append(rowsDel.ToString());
-                    _Log.Info(sb.ToString());
+                    Log.Info(sb.ToString());
                     Application.DoEvents();
 
-                    var rowsCopied = _AcLogService.UpdateSqlTable(sqlServer, sqlDb, ctrlItem.ItemDataString, accessFilePath, ctrlItem.ToString());
+                    var rowsCopied = _acLogService.UpdateSqlTable(sqlServer, sqlDb, ctrlItem.ItemDataString, accessFilePath, ctrlItem.ToString());
                     sb.Clear();
                     sb.Append("UpdateSqlTable: Rows: ");
                     sb.Append(rowsCopied.ToString());
-                    _AcLogService.SetLastTableUpdDateTime(sqlServer, sqlDb, ctrlItem.ItemDataString);
+                    _acLogService.SetLastTableUpdDateTime(sqlServer, sqlDb, ctrlItem.ItemDataString);
                     sb.AppendLine(", LastUpdate DateTime set.");
-                    _Log.Info(sb.ToString());
+                    Log.Info(sb.ToString());
                     Application.DoEvents();
                 }
-                _Log.Info("Update All SQL Tables was successful!");
+                Log.Info("Update All SQL Tables was successful!");
             }
             catch (Exception ex)
             {
-                _Log.Error("Update All SQL Tables encountered an error: " + ex.Message);
+                Log.Error("Update All SQL Tables encountered an error: " + ex.Message);
             }
             finally
             {
@@ -525,18 +509,18 @@ namespace AclTrek
                 sb.AppendLine(accessFilePath);
                 sb.Append(" TableName: ");
                 sb.AppendLine(tableName);
-                _Log.Info(sb.ToString());
+                Log.Info(sb.ToString());
                 this.Cursor = Cursors.WaitCursor;
                 Application.DoEvents();
                 sb.Clear();
 
-                DataTable tbl = _AcLogService.GetAccessTable(accessFilePath, tableName);
+                DataTable tbl = _acLogService.GetAccessTable(accessFilePath, tableName);
                 dgProgramData.DataSource = tbl;
-                _Log.Info("GetAccessTable: Read " +  tbl.Rows.Count.ToString() + " Rows.");
+                Log.Info("GetAccessTable: Read " +  tbl.Rows.Count.ToString() + " Rows.");
             }
             catch (Exception ex)
             {
-                _Log.Error("GetAccessTable: " + ex.Message);
+                Log.Error("GetAccessTable: " + ex.Message);
             }
             finally
             {
@@ -555,12 +539,12 @@ namespace AclTrek
                 sb.AppendLine(accessFilePath);
                 sb.Append(" TableName: ");
                 sb.AppendLine(tableName);
-                _Log.Info(sb.ToString());
+                Log.Info(sb.ToString());
                 this.Cursor = Cursors.WaitCursor;
                 Application.DoEvents();
                 sb.Clear();
 
-                var colList = _AcLogService.GetAccessTableColumnNames(accessFilePath, tableName);
+                var colList = _acLogService.GetAccessTableColumnNames(accessFilePath, tableName);
                 sb.AppendLine("GetAccessTableFields: Read " + colList.Count + " Columns.");
                 int colCntr = 1;
 
@@ -573,11 +557,11 @@ namespace AclTrek
                     sb.AppendLine(column.DataType.Name);
                     colCntr++;
                 }
-                _Log.Info(sb.ToString());
+                Log.Info(sb.ToString());
             }
             catch (Exception ex)
             {
-                _Log.Error("GetAccessTableFields: " + ex.Message);
+                Log.Error("GetAccessTableFields: " + ex.Message);
             }
             finally
             {
@@ -596,19 +580,19 @@ namespace AclTrek
                 sb.AppendLine(accessFilePath);
                 sb.Append(" TableName: ");
                 sb.AppendLine(tableName);
-                _Log.Info(sb.ToString());
+                Log.Info(sb.ToString());
                 this.Cursor = Cursors.WaitCursor;
                 Application.DoEvents();
                 sb.Clear();
 
-                var lastMod = _AcLogService.GetAccessTableLastModified(accessFilePath, tableName);
+                var lastMod = _acLogService.GetAccessTableLastModified(accessFilePath, tableName);
                 sb.Append("GetAccessTableLastMod: ");
-                sb.Append(lastMod.ToString(_StdDateDispFmt));
-                _Log.Info(sb.ToString());
+                sb.Append(lastMod.ToString(StdDateDispFmt));
+                Log.Info(sb.ToString());
             }
             catch (Exception ex)
             {
-                _Log.Error("GetAccessTableLastMod: " + ex.Message);
+                Log.Error("GetAccessTableLastMod: " + ex.Message);
             }
             finally
             {
@@ -627,16 +611,16 @@ namespace AclTrek
         private void TestHost_Load(object sender, EventArgs e)
         {
             Properties.Settings settings = Properties.Settings.Default;
-            _Log = new Log4Form(typeof(TestHost).ToString(), rtxtLog);
-            _Log.Info("*****************************************************************");
-            _Log.Info(_AppLogName + ": Application Started.");
+            Log = new Log4Form(typeof(TestHost).ToString(), rtxtLog);
+            Log.Info("*****************************************************************");
+            Log.Info(AppLogName + ": Application Started.");
 
             LoadDefaultData();
         }
 
         private void TestHost_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (_ExternalSvcConnected)
+            if (_externalSvcConnected)
             {
             }
         }
@@ -756,7 +740,7 @@ namespace AclTrek
 
         private void btnToExcel_Click(object sender, EventArgs e)
         {
-            if (_DisplayDataSet != null)
+            if (_displayDataSet != null)
             {
             }
         }

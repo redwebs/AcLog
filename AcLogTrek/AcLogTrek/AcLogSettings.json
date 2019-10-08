@@ -1,0 +1,61 @@
+{
+  "appGeneral":
+    {
+      "logFilePath": "Set in log4net.config"
+    },
+  "accessMdbs":
+  [
+    {
+      "filePath": "C:\\Users\\myUser\\HamLog\\LogData.mdb",
+      "userName": "mdb_user", 
+      "passWord": "magic",
+      "tables": 
+      [
+        "Contacts",
+        "Bigaziga"
+      ]
+    },
+    {
+      "filePath": "C:\\Users\\myUser\\HamLog\\AnotherLogData.mdb",
+      "userName": "mdb_user", 
+      "passWord": "magic",
+      "tables": 
+      [
+        "Contacts",
+        "Carsetag"
+      ]
+    }
+  ],
+  "sqlServers":
+  [
+    {
+      "serverName": "SsServerName",
+      "databaseName": "ContactLog", 
+      "security": "Windows",
+      "userName": "NA",
+      "passWord": "NA",
+      "tables": 
+      [
+        "Contacts",
+        "Bigaziga"
+      ]
+    },
+    {
+      "serverName": "SsServerNameToo",
+      "databaseName": "ContactLog", 
+      "security": "SQL",
+      "userName": "sqluserName",
+      "passWord": "magic",
+      "tables": 
+      [
+        "Contacts",
+        "Carsetag"
+      ]
+    }
+  ],
+  "windowsUser":
+  { 
+    "winUser": "someuser",
+    "winPassWord": "winpwd"
+  }
+}

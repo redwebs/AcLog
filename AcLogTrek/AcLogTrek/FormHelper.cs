@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
@@ -224,10 +225,21 @@ namespace AclTrek
             return System.Environment.GetEnvironmentVariable(name);
         }
 
-        public static void SetEnvironmentVar(string name, string value)
+        public static void SetEnvironmentVar(string name, string value, EnvironmentVariableTarget evTarget)
         {
-            Environment.SetEnvironmentVariable(name, value, EnvironmentVariableTarget.Machine);
+            Environment.SetEnvironmentVariable(name, value, evTarget);
         }
+
+        public static string GetExecutingDirectory()
+        {
+            var assembly = Assembly.GetEntryAssembly();
+            if (assembly == null) return "Unknown Assembly";
+
+            var location = new Uri(assembly.GetName().CodeBase);
+            var info = new FileInfo(location.AbsolutePath).Directory;
+            return info != null ? info.FullName : "Unknown Directory";
+        }
+
 
         #endregion System
 
