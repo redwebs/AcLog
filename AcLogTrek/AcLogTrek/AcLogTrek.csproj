@@ -94,7 +94,6 @@
     <Compile Include="FolderBrowser.cs" />
     <Compile Include="FormHelper.cs" />
     <Compile Include="Log4Form.cs" />
-    <Compile Include="Log4netTraceListener.cs" />
     <Compile Include="TestHost.cs">
       <SubType>Form</SubType>
     </Compile>

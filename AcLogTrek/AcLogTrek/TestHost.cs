@@ -86,68 +86,34 @@ namespace AclTrek
 
             AclSettings = FormHelper.ReadSettingsJson(settingsPath);
 
-            Properties.Settings appSettings = Properties.Settings.Default;
+            // Access Database 
+            foreach (var setting in AclSettings.AccessMdbs)
+            {
+                cboAccessFilePath.Items.Add(new CtrlListItem(setting.FilePath));
+            }
 
-            CtrlListItem accessPath = new CtrlListItem(appSettings.AccessMdbPath1 ?? "AccessMdbPath1");
-            cboAccessFilePath.Items.Add(accessPath);
-            accessPath = new CtrlListItem(appSettings.AccessMdbPath2 ?? "AccessMdbPath2");
-            cboAccessFilePath.Items.Add(accessPath);
-            accessPath = new CtrlListItem(appSettings.AccessMdbPath3 ?? "AccessMdbPath3");
-            cboAccessFilePath.Items.Add(accessPath);
-            cboAccessFilePath.SelectedIndex = 0;
+            if (cboAccessFilePath.Items.Count > 0)
+            {
+                cboAccessFilePath.SelectedIndex = 0;
+            }
 
+            // SQL Database 
+            foreach (var setting in AclSettings.SqlServers)
+            {
+                cboSqlServer.Items.Add(new CtrlListItem(setting.ServerName));
+            }
 
-            var accessTable = new CtrlListItem("Insurance Compliance", "InsuranceCompliance");
-            cboAccessTable.Items.Add(accessTable);
-            accessTable = new CtrlListItem("COI Letterhead Adresses: All Items", "COI_LHeadAddr");
-            cboAccessTable.Items.Add(accessTable);
-            accessTable = new CtrlListItem("COI Signatories", "COI_Signatories");
-            cboAccessTable.Items.Add(accessTable);
-            accessTable = new CtrlListItem("Contractors", "Contractor");
-            cboAccessTable.Items.Add(accessTable);
-            accessTable = new CtrlListItem("tblUserTable", "COI_User");
-            cboAccessTable.Items.Add(accessTable);
-            accessTable = new CtrlListItem("Certificates of Insurance: COI_Data_View", "CertificateOfInsurance");
-            cboAccessTable.Items.Add(accessTable);
-            cboAccessTable.SelectedIndex = 0;
+            if (cboSqlServer.Items.Count > 0)
+            {
+                cboSqlServer.SelectedIndex = 0;
+            }
 
-            txtAccessUname.Text = appSettings.AccessMdbUserName;
-            txtAccessUsrPword.Text = appSettings.AccessMdbUserPW;
-
-            var sqlServer = new CtrlListItem(appSettings.SqlServerName1 ?? "SqlServerName1");
-            cboSqlServer.Items.Add(sqlServer);
-            sqlServer = new CtrlListItem(appSettings.SqlServerName2 ?? "SqlServerName2");
-            cboSqlServer.Items.Add(sqlServer);
-            sqlServer = new CtrlListItem(appSettings.SqlServerName3 ?? "SqlServerName3");
-            cboSqlServer.Items.Add(sqlServer);
-            cboSqlServer.SelectedIndex = 0;
-
-            var sqlDb = new CtrlListItem(appSettings.SqlDbName1 ?? "SqlDbName1");
-            cboSqlDb.Items.Add(sqlDb);
-            sqlDb = new CtrlListItem(appSettings.SqlDbName2 ?? "SqlDbName2");
-            cboSqlDb.Items.Add(sqlDb);
-            sqlDb = new CtrlListItem(appSettings.SqlDbName3 ?? "SqlDbName3");
-            cboSqlDb.Items.Add(sqlDb);
-            cboSqlDb.SelectedIndex = 0;
-
-            var sqlTable = new CtrlListItem("SICCode");
-            cboTableSqlSvr.Items.Add(sqlTable);
-            sqlTable = new CtrlListItem("Person");
-            cboTableSqlSvr.Items.Add(sqlTable);
-            sqlTable = new CtrlListItem("Client");
-            cboTableSqlSvr.Items.Add(sqlTable);
-            sqlTable = new CtrlListItem("Carrier");
-            cboTableSqlSvr.Items.Add(sqlTable);
-            sqlTable = new CtrlListItem("CarrierCommission");
-            cboTableSqlSvr.Items.Add(sqlTable);
-            sqlTable = new CtrlListItem("SalesTeam");
-            cboTableSqlSvr.Items.Add(sqlTable);
-
-            cboTableSqlSvr.SelectedIndex = 0;
             _loadingDefaultData = false;
         }
         
-        #endregion Sharepoint 1
+        
+
+        #endregion Form Loading 
 
         #region Utilities
         
@@ -694,15 +660,6 @@ namespace AclTrek
             CreateAcLogServices();
         }
 
-        private void cboSqlServer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CreateAcLogServices();
-        }
-
-        private void cboSqlDb_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CreateAcLogServices();
-        }
 
         private void txtSqlUname_TextChanged(object sender, EventArgs e)
         {
@@ -716,8 +673,61 @@ namespace AclTrek
 
         private void cboAccessFilePath_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CreateAcLogServices();
+            var target = cboAccessFilePath.SelectedIndex;
+            var setting = AclSettings.AccessMdbs[target];
+            txtAccessUname.Text = setting.UserName;
+            txtAccessUsrPword.Text = setting.PassWord;
+            cboAccessTable.Items.Clear();
+
+            foreach (var table in setting.Tables)
+            {
+                cboAccessTable.Items.Add(new CtrlListItem(table));
+            }
+
+            if (cboAccessTable.Items.Count > 0)
+            {
+                cboAccessTable.SelectedIndex = 0;
+            }
         }
+
+        private void cboSqlServer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var target = cboSqlServer.SelectedIndex;
+            var setting = AclSettings.SqlServers[target];
+            cboSqlDb.Items.Clear();
+
+            foreach (var server in setting.SqlServerDbs)
+            {
+                cboSqlDb.Items.Add(new CtrlListItem(server.DatabaseName));
+            }
+
+            if (cboSqlDb.Items.Count > 0)
+            {
+                cboSqlDb.SelectedIndex = 0;
+            }
+        }
+
+        private void cboSqlDb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var server = cboSqlServer.SelectedIndex;
+            var target = cboSqlDb.SelectedIndex;
+            var setting = AclSettings.SqlServers[server].SqlServerDbs[target];
+
+            txtSqlUname.Text = setting.UserName;
+            txtSqlUsrPword.Text = setting.PassWord;
+            cboTableSqlSvr.Items.Clear();
+
+            foreach (var table in setting.Tables)
+            {
+                cboTableSqlSvr.Items.Add(new CtrlListItem(table));
+            }
+
+            if (cboTableSqlSvr.Items.Count > 0)
+            {
+                cboTableSqlSvr.SelectedIndex = 0;
+            }
+        }
+
 
         #endregion
 

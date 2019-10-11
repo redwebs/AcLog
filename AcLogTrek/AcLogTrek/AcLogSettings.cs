@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace AclTrek
@@ -10,8 +6,8 @@ namespace AclTrek
     public class AcLogSettings
     {
         public AppGeneralSettings AppGeneral { get; set; }
-        public IList<Accessmdb> AccessMdbs { get; set; }
-        public IList<Sqlserver> SqlServers { get; set; }
+        public IList<AccessMdb> AccessMdbs { get; set; }
+        public IList<SqlServer> SqlServers { get; set; }
         public WindowsUserSettings WindowsUser { get; set; }
     }
 
@@ -26,7 +22,7 @@ namespace AclTrek
         public string WinPassWord { get; set; }
     }
 
-    public class Accessmdb
+    public class AccessMdb
     {
         public string FilePath { get; set; }
         public string UserName { get; set; }
@@ -34,14 +30,18 @@ namespace AclTrek
         public List<string> Tables { get; set; }
     }
 
-    public class Sqlserver
+    public class SqlServerDb
     {
-        public string ServerName { get; set; }
         public string DatabaseName { get; set; }
         public string Security { get; set; }
         public string UserName { get; set; }
         public string PassWord { get; set; }
         public List<string> Tables { get; set; }
+    }
+    public class SqlServer
+    {
+        public string ServerName { get; set; }
+        public List<SqlServerDb> SqlServerDbs{ get; set; }
     }
 
 }

@@ -326,7 +326,6 @@
             this.txtAccessUsrPword.Name = "txtAccessUsrPword";
             this.txtAccessUsrPword.Size = new System.Drawing.Size(132, 20);
             this.txtAccessUsrPword.TabIndex = 87;
-            this.txtAccessUsrPword.Text = "COIsys*acc";
             this.txtAccessUsrPword.UseSystemPasswordChar = true;
             this.txtAccessUsrPword.TextChanged += new System.EventHandler(this.txtAccessUsrPword_TextChanged);
             // 
@@ -336,7 +335,6 @@
             this.txtAccessUname.Name = "txtAccessUname";
             this.txtAccessUname.Size = new System.Drawing.Size(132, 20);
             this.txtAccessUname.TabIndex = 84;
-            this.txtAccessUname.Text = "slamdata";
             this.txtAccessUname.TextChanged += new System.EventHandler(this.txtAccessUname_TextChanged);
             // 
             // label1
@@ -429,7 +427,6 @@
             this.txtSqlUname.Name = "txtSqlUname";
             this.txtSqlUname.Size = new System.Drawing.Size(132, 20);
             this.txtSqlUname.TabIndex = 13;
-            this.txtSqlUname.Text = "slamdata";
             this.txtSqlUname.TextChanged += new System.EventHandler(this.txtSqlUname_TextChanged);
             // 
             // groupBox1
@@ -485,7 +482,6 @@
             this.txtSqlUsrPword.Name = "txtSqlUsrPword";
             this.txtSqlUsrPword.Size = new System.Drawing.Size(132, 20);
             this.txtSqlUsrPword.TabIndex = 81;
-            this.txtSqlUsrPword.Text = "COIsys*acc";
             this.txtSqlUsrPword.UseSystemPasswordChar = true;
             this.txtSqlUsrPword.TextChanged += new System.EventHandler(this.txtSqlUsrPword_TextChanged);
             // 

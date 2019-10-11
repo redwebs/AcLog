@@ -1,61 +1,76 @@
 {
-  "appGeneral":
+    "appGeneral":
     {
-      "logFilePath": "Set in log4net.config"
+        "logFilePath": "Set in log4net.config"
     },
-  "accessMdbs":
-  [
-    {
-      "filePath": "C:\\Users\\myUser\\HamLog\\LogData.mdb",
-      "userName": "mdb_user", 
-      "passWord": "magic",
-      "tables": 
-      [
-        "Contacts",
-        "Bigaziga"
-      ]
-    },
-    {
-      "filePath": "C:\\Users\\myUser\\HamLog\\AnotherLogData.mdb",
-      "userName": "mdb_user", 
-      "passWord": "magic",
-      "tables": 
-      [
-        "Contacts",
-        "Carsetag"
-      ]
+    "accessMdbs":
+    [
+        {
+            "filePath": "C:\\Users\\fred\\Documents\\HamLog\\LogData.mdb",
+            "userName": "mdb_user1", 
+            "passWord": "magic1",
+            "tables": 
+            [
+                "Contacts1",
+                "Bigaziga1"
+            ]
+        },
+        {
+            "filePath": "C:\\Users\\fred\\Documents\\HamLog\\AnotherLogData.mdb",
+            "userName": "mdb_user2", 
+            "passWord": "magic2",
+            "tables": 
+            [
+                "Contacts2",
+                "Carsetag2"
+            ]
+        }
+    ],
+    "sqlServers": [
+        {
+            "serverName": "SsServerName1",
+            "sqlServerDbs": [
+                {
+                    "databaseName": "ContactLog1",
+                    "security": "Windows",
+                    "userName": "NA",
+                    "passWord": "NA",
+                    "tables": [
+                        "SqlContacts1",
+                        "SqlBigaziga1"
+                    ]
+                }
+            ]
+        },
+        {
+            "serverName": "SsServerName2",
+            "sqlServerDbs": [
+                {
+                    "databaseName": "ContactLog21",
+                    "security": "SQL",
+                    "userName": "sqluserName21",
+                    "passWord": "magic2",
+                    "tables": [
+                        "SqlContacts21",
+                        "SqlCarsetag21"
+                    ]
+                },
+                {
+                    "databaseName": "ContactLog22",
+                    "security": "SQL",
+                    "userName": "sqluserName22",
+                    "passWord": "magic22",
+                    "tables": [
+                        "SqlContacts22",
+                        "SqlCarsetag22"
+                    ]
+                }
+            ]
+        }
+    ],
+    "windowsUser":
+    { 
+        "winUser": "someuser",
+        "winPassWord": "winpwd"
     }
-  ],
-  "sqlServers":
-  [
-    {
-      "serverName": "SsServerName",
-      "databaseName": "ContactLog", 
-      "security": "Windows",
-      "userName": "NA",
-      "passWord": "NA",
-      "tables": 
-      [
-        "Contacts",
-        "Bigaziga"
-      ]
-    },
-    {
-      "serverName": "SsServerNameToo",
-      "databaseName": "ContactLog", 
-      "security": "SQL",
-      "userName": "sqluserName",
-      "passWord": "magic",
-      "tables": 
-      [
-        "Contacts",
-        "Carsetag"
-      ]
-    }
-  ],
-  "windowsUser":
-  { 
-    "winUser": "someuser",
-    "winPassWord": "winpwd"
-  }
 }
