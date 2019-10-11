@@ -281,7 +281,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgProgramData.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgProgramData.Size = new System.Drawing.Size(826, 209);
+            this.dgProgramData.Size = new System.Drawing.Size(749, 209);
             this.dgProgramData.TabIndex = 0;
             // 
             // openFileDialog1
